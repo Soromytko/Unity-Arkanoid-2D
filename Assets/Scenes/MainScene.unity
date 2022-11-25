@@ -1746,7 +1746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &670093890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2020,6 +2020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameField: {fileID: 1700215168}
+  _newScore: {fileID: 0}
+  _leaderNames: []
 --- !u!114 &821682610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3265,8 +3267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pause: {fileID: 185802421}
   _gameOverPanel: {fileID: 227038936}
-  _bestPlayerNameText: {fileID: 1185773753}
-  _scoreText: {fileID: 690751101}
   _newScoreTitleText: {fileID: 875233502}
   _newScoreValueText: {fileID: 937849054}
 --- !u!82 &1728310765
@@ -4051,8 +4051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e1ea3d71317924dbc6973fd66cc5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireBonus: {fileID: 8137340144266956010, guid: 31d1b3cff330c9d4986a79e5c03a668e, type: 3}
-  MetalBonus: {fileID: 8137340144266956010, guid: 049ec8d4177dd9347b82cca86d659aa3, type: 3}
 --- !u!1 &2040707844
 GameObject:
   m_ObjectHideFlags: 0

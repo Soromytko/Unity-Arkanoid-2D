@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0801826be476a4459a0a7db90ca818b, type: 3}
-  m_Name: "\u041D\u0438\u043A\u0438\u0442\u0430"
+  m_Name: GameData
   m_EditorClassIdentifier: 
   resetOnStart: 1
   level: 1
   balls: 6
   points: 0
-  music: 1
+  music: 0
   sound: 1
   pointsToBall: 0
   BonusFrequency: 40
@@ -25,6 +25,4 @@ MonoBehaviour:
   NormBonusFrequency: 100
   FireTimer: 5
   MetalTimer: 3
-  Name: "\u041D\u0438\u043A\u0438\u0442\u0430"
-  Best: "\u041D\u0438\u043A\u0438\u0442\u0430"
-  Score: 310
+  CurrentPlayerName: 

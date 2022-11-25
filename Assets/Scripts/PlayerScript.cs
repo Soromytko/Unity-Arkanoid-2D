@@ -68,17 +68,17 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void BonusArrive(float x, float  y) //a1
+    public void BonusArrive(float x, float y) //a1
     {
         var obj = Instantiate(bonusPrefab, new Vector3(x, y, 0), Quaternion.identity);
         obj.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -2, 0);
 
         int p = Random.Range(0, 100); //
-        if(p <= gameData.BonusFrequency) //0-40
+        if (p <= gameData.BonusFrequency) //0-40
         {
             obj.AddComponent<BonusBase>();
         }
-        else if(p <= gameData.FireBonusFrequency)//40-70
+        else if (p <= gameData.FireBonusFrequency)//40-70
         {
             obj.AddComponent<FireBonus>();
         }
@@ -90,8 +90,6 @@ public class PlayerScript : MonoBehaviour
         {
             obj.AddComponent<NormBonus>();
         }
-
-        print(p);
     }
 
     void SetBackground()
@@ -117,7 +115,7 @@ public class PlayerScript : MonoBehaviour
     IEnumerator BallDestroyedCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
-        if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
+        if (GameObject.FindGameObjectsWithTag("Ball").Length <= 0)
         {
             if (gameData.balls > 0)
             {
@@ -125,16 +123,13 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                int newScore = -1;
-                if(gameData.IsNewScore)
-                {
-                    print("Save");
-
-                    gameData.SaveScore();
-                    newScore = gameData.points;
-                }
-
-                Pause.GameOver(newScore);
+                print("Save");
+                gameData.SaveScore();
+                int score = PlayerPrefs.GetInt("newScore", -1);
+                if (score > 0) print($"New leader is {gameData.CurrentPlayerName}: {score}");
+                gameData.Reset();
+                gameData.Save();
+                Pause.GameOver();
 
                 //gameData.Reset();
                 //SceneManager.LoadScene("MainScene");
@@ -245,7 +240,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
             gameData.sound = !gameData.sound;
-        
+
 
         if (Input.GetKeyDown(KeyCode.N))
         {

@@ -6,8 +6,6 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject _pause;
     [SerializeField] private GameObject _gameOverPanel;
-    [SerializeField] private Text _bestPlayerNameText;
-    [SerializeField] private Text _scoreText;
     [SerializeField] private Text _newScoreTitleText;
     [SerializeField] private Text _newScoreValueText;
 
@@ -29,9 +27,6 @@ public class Pause : MonoBehaviour
             SetPauseActive(!_pause.activeSelf);
         }
 
-        _bestPlayerNameText.text = _gameData.Best;
-        _scoreText.text = _gameData.Score.ToString();
-
         //print(PlayerPrefs.GetString("currentPlayer"));
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -39,7 +34,14 @@ public class Pause : MonoBehaviour
             print("Reset Score");
             PlayerPrefs.SetString("bestPlayer", "Ноу нейм");
             PlayerPrefs.SetInt("score", 0);
+
+            for (int i = 0; i < 5; i++)
+            {
+                PlayerPrefs.SetString("LeaderName" + i, "");
+                PlayerPrefs.SetInt("LeaderScore" + i, 0);
+            }
         }
+            
     }
 
     public void SetPauseActive(bool active)
@@ -63,7 +65,7 @@ public class Pause : MonoBehaviour
     public void OnNewGame()
     {
         FindObjectOfType<PlayerScript>().gameData.Reset();
-        FindObjectOfType<PlayerScript>().gameData.Load();
+        FindObjectOfType<PlayerScript>().gameData.Save();
         SceneManager.LoadScene(1);
     }
 
@@ -74,6 +76,9 @@ public class Pause : MonoBehaviour
 
     public void GameOver(int newScore = -1)
     {
+        SceneManager.LoadScene(0);
+        return;
+
         SetPauseActive(true);
         _pause.SetActive(false);
         _gameOverPanel.SetActive(true);
